@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type {Header, Item} from 'vue3-easy-data-table';
-import {onMounted, ref, watch} from 'vue';
+import {onMounted, ref, watch, watchEffect} from 'vue';
 import {BookService} from '@/service/bookService';
 
 const props = defineProps({
@@ -26,9 +26,13 @@ async function updateBooks() {
   }
 }
 
-watch(props.currentSearch, (value, oldValue, onCleanup) => {
-  if (value && value !== oldValue) {
-    updateBooks();
+watch(() => props.currentSearch, async (newSearch, oldSearch) => {
+  if (oldSearch !== newSearch) {
+    if (!newSearch) {
+      items.value = await BookService.getBooks();
+    } else {
+      items.value = await BookService.searchBooks(newSearch);
+    }
   }
 });
 
