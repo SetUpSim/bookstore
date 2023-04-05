@@ -4,6 +4,8 @@ import {onMounted, ref, watch} from 'vue';
 import {BookService} from '@/service/bookService';
 import router from '@/router';
 
+const LOAD_INTERVAL = 10000; // milliseconds
+
 const props = defineProps({
   search: {
     required: false,
@@ -20,12 +22,24 @@ const headers: Header[] = [
 ];
 
 const items = ref(Array<Item>())
+let lastLoadInterval: number | undefined;
 
 async function updateBooks(search: string | undefined) {
+  clearInterval(lastLoadInterval);
   if (!search) {
+    console.log("Initial get all books")
     items.value = await BookService.getBooks();
+    lastLoadInterval = setInterval(async () => {
+      console.log("Interval get all books")
+      items.value = await BookService.getBooks();
+    }, LOAD_INTERVAL);
   } else {
+    console.log("Initial search books")
     items.value = await BookService.searchBooks(search);
+    lastLoadInterval = setInterval(async () => {
+      console.log("Interval search books")
+      items.value = await BookService.searchBooks(search);
+    }, LOAD_INTERVAL);
   }
 }
 
