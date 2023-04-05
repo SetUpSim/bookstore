@@ -7,7 +7,7 @@ import TopBar from '@/components/TopBar.vue';
 <template>
   <TopBar/>
 
-  <main role="main" class="container">
+  <main role="main" class="container mb-5">
     <router-view/>
   </main>
 </template>

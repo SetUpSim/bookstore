@@ -55,7 +55,6 @@ onMounted(() => {
       :items="items"
       @click-row="rowSelected"
   />
-
 </template>
 
 

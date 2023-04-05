@@ -20,7 +20,15 @@ function searchApplied(): void {
 
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Bookstore manager</a>
+    <RouterLink to="/books/" class="navbar-brand" style="font-weight: bold">Bookstore manager</RouterLink>
+    <RouterLink to="/books/new" class="btn btn-success">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus"
+           viewBox="0 0 16 12">
+        <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+      </svg>
+    </RouterLink>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

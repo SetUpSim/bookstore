@@ -12,6 +12,12 @@ const router = createRouter({
             props: route => ({search: route.query.search})
         },
         {
+            path: '/books/new',
+            name: 'newbook',
+            component: BookDetails,
+            props: () => ({bookId: -1})
+        },
+        {
             path: '/books/:id',
             name: 'details',
             component: BookDetails,
