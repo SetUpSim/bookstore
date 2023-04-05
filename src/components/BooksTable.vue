@@ -2,11 +2,11 @@
 import type {ClickRowArgument, Header, Item} from 'vue3-easy-data-table';
 import {onMounted, ref, watch} from 'vue';
 import {BookService} from '@/service/bookService';
-// import router from '@/router';
+import router from '@/router';
 
 const props = defineProps({
   search: {
-    required: true,
+    required: false,
     type: String
   }
 })
@@ -36,8 +36,10 @@ watch(() => props.search, (newSearch, oldSearch) => {
 });
 
 function rowSelected(item: ClickRowArgument) {
-  // router.push('/books/' + item.id);
-  console.log(item)
+  router.push({name: 'details', params:
+        {
+          id: item.id
+        }});
 }
 
 onMounted(() => {
