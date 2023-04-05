@@ -1,5 +1,5 @@
-import type {BookModel} from '@/model/bookModel';
 import axios from 'axios';
+import type BookModel from '@/model/bookModel';
 
 export class BookService {
     private static apiPath = 'http://localhost:3000/';
@@ -12,6 +12,11 @@ export class BookService {
         const response = await axios.get(this.apiPath + "books/search", {params: {
                 q: term
             }});
-        return await response.data
+        return response.data
+    }
+
+    static async getBookById(id: number) {
+        const response = await axios.get(this.apiPath + "books/" + id);
+        return response.data;
     }
 }
