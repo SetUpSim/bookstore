@@ -6,9 +6,11 @@ const searchInput = ref('');
 
 function searchApplied(): void {
   if (searchInput.value) {
-    router.push({name: 'books', query: {
+    router.push({
+      name: 'books', query: {
         search: searchInput.value
-      }});
+      }
+    });
   } else {
     router.push({name: 'books'})
   }

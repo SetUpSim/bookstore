@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type {ClickRowArgument, Header, Item} from 'vue3-easy-data-table';
-import {onMounted, ref, watch, watchEffect} from 'vue';
+import {onMounted, ref, watch} from 'vue';
 import {BookService} from '@/service/bookService';
 // import router from '@/router';
 
@@ -19,7 +19,6 @@ const headers: Header[] = [
   {text: 'Left in stock', value: 'stock'}
 ];
 
-// const currentSearch = ref<string | undefined>('');
 const items = ref(Array<Item>())
 
 async function updateBooks(search: string | undefined) {
@@ -29,12 +28,6 @@ async function updateBooks(search: string | undefined) {
     items.value = await BookService.searchBooks(search);
   }
 }
-
-// watch(currentSearch, async (newSearch, oldSearch) => {
-//   if (oldSearch !== newSearch) {
-//     await updateBooks();
-//   }
-// });
 
 watch(() => props.search, (newSearch, oldSearch) => {
   if (oldSearch !== newSearch) {
@@ -54,7 +47,7 @@ onMounted(() => {
 </script>
 <template>
   <h2 class="mt-5 mb-4">Manage books info, update stock information</h2>
-  <p v-if="props.search" class="mb-3">Current search term is: {{props.search}}</p>
+  <p v-if="props.search" class="mb-3">Current search term is: {{ props.search }}</p>
   <DataTable
       :headers="headers"
       :items="items"

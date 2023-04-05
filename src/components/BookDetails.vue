@@ -21,10 +21,10 @@ onMounted(async () => {
 
 </script>
 <template>
-  <p>Title: {{book?.title}}</p>
-  <p>Author: {{book?.author}}</p>
-  <p>Description: {{book?.description}}</p>
-  <p>Stock: {{book?.stock}}</p>
+  <p>Title: {{ book?.title }}</p>
+  <p>Author: {{ book?.author }}</p>
+  <p>Description: {{ book?.description }}</p>
+  <p>Stock: {{ book?.stock }}</p>
 </template>
 
 
